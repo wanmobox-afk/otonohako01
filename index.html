@@ -1,1 +1,1154 @@
-# otonohako01
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>music studio 音の箱 | 岡山市南区のアットホームな音楽スタジオ・音楽教室</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (Kiwi Maru & Quicksand for warm & friendly look) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Quicksand:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans JP', 'Kiwi Maru', sans-serif;
+      background-color: #fdfbf7; /* 暖かみのある生成り色 */
+    }
+    .font-friendly {
+      font-family: 'Kiwi Maru', 'Noto Sans JP', serif;
+    }
+    .font-english {
+      font-family: 'Quicksand', sans-serif;
+    }
+    /* スムーズスクロール */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* ぬくもりのあるグラデーションとシャドウ */
+    .warm-shadow {
+      box-shadow: 0 10px 30px -10px rgba(139, 92, 26, 0.15);
+    }
+    .warm-border {
+      border-color: #f5efe6;
+    }
+  </style>
+</head>
+<body class="text-neutral-700 selection:bg-amber-100 selection:text-amber-800">
+
+  <!-- ヘッダー -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-100/50 warm-shadow">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- ロゴ部分 -->
+      <a href="#" onclick="switchPage('home')" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center font-bold text-xl shadow-inner group-hover:scale-105 transition-transform">
+          <i data-lucide="music-4" class="w-6 h-6 text-amber-500"></i>
+        </div>
+        <div>
+          <span class="text-xs text-amber-600 tracking-wider font-english block font-bold">MUSIC STUDIO</span>
+          <h1 class="text-xl font-bold font-friendly text-neutral-800 leading-none flex items-center gap-1">
+            音の箱 <span class="text-xs text-amber-500 font-normal hidden sm:inline">おとのはこ</span>
+          </h1>
+        </div>
+      </a>
+
+      <!-- デスクトップ ナビゲーション -->
+      <nav class="hidden lg:flex items-center space-x-1">
+        <button onclick="switchPage('home')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-amber-600 bg-amber-50" data-page="home">ホーム</button>
+        <button onclick="switchPage('lesson')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-neutral-600" data-page="lesson">音楽教室</button>
+        <button onclick="switchPage('rental')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-neutral-600" data-page="rental">スタジオレンタル</button>
+        <button onclick="switchPage('pa')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-neutral-600" data-page="pa">PA音響</button>
+        <button onclick="switchPage('event')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-neutral-600" data-page="event">イベント</button>
+        <button onclick="switchPage('blog')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-neutral-600" data-page="blog">ブログ</button>
+        <button onclick="switchPage('contact')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-50/50 hover:text-amber-600 transition-colors text-neutral-600" data-page="contact">お問い合わせ</button>
+      </nav>
+
+      <!-- 電話＆コンタクト(デスクトップ) -->
+      <div class="hidden md:flex items-center space-x-3">
+        <a href="tel:0862637566" class="flex items-center gap-2 px-3 py-1.5 border border-amber-200 rounded-full text-xs text-amber-700 hover:bg-amber-50 transition-colors">
+          <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+          <span class="font-bold">086-263-7566</span>
+        </a>
+        <button onclick="switchPage('contact')" class="bg-amber-500 hover:bg-amber-600 text-white font-medium text-xs px-4 py-2 rounded-full transition-colors flex items-center gap-1.5 shadow-md shadow-amber-500/20">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          Web予約・問合せ
+        </button>
+      </div>
+
+      <!-- モバイルメニューボタン -->
+      <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl hover:bg-amber-50 text-neutral-600 transition-colors" aria-label="メニューを開く">
+        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- モバイルナビゲーション ドロワー -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-amber-100 px-4 py-4 space-y-2 animate-fadeIn">
+      <button onclick="switchPage('home'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="home">
+        <i data-lucide="home" class="w-5 h-5 text-amber-400"></i> ホーム
+      </button>
+      <button onclick="switchPage('lesson'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="lesson">
+        <i data-lucide="graduation-cap" class="w-5 h-5 text-amber-400"></i> 音楽教室
+      </button>
+      <button onclick="switchPage('rental'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="rental">
+        <i data-lucide="sliders" class="w-5 h-5 text-amber-400"></i> スタジオレンタル
+      </button>
+      <button onclick="switchPage('pa'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="pa">
+        <i data-lucide="volume-2" class="w-5 h-5 text-amber-400"></i> PA音響
+      </button>
+      <button onclick="switchPage('event'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="event">
+        <i data-lucide="calendar-days" class="w-5 h-5 text-amber-400"></i> イベント
+      </button>
+      <button onclick="switchPage('blog'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="blog">
+        <i data-lucide="book-open" class="w-5 h-5 text-amber-400"></i> ブログ
+      </button>
+      <button onclick="switchPage('contact'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl text-base font-medium hover:bg-amber-50 hover:text-amber-600 transition-all flex items-center gap-3 text-neutral-700" data-mob-page="contact">
+        <i data-lucide="mail" class="w-5 h-5 text-amber-400"></i> お問い合わせ
+      </button>
+      
+      <div class="pt-4 border-t border-amber-50 flex flex-col gap-2">
+        <a href="tel:0862637566" class="flex items-center justify-center gap-2 py-3 bg-amber-50 text-amber-800 rounded-xl font-bold">
+          <i data-lucide="phone" class="w-5 h-5 text-amber-500"></i> 086-263-7566
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== メインコンテンツ領域 ==================== -->
+  <main class="min-h-screen">
+
+    <!-- 🌟 【HOME】 ページ -->
+    <div id="page-home" class="page-content">
+      <!-- ヒーローセクション -->
+      <section class="relative overflow-hidden bg-gradient-to-b from-amber-50/70 via-orange-50/40 to-transparent py-16 md:py-24">
+        <!-- 背景のやわらかい装飾図形 -->
+        <div class="absolute top-10 left-10 w-72 h-72 bg-amber-200/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          <!-- キャッチコピー -->
+          <div class="md:col-span-7 space-y-6 text-center md:text-left">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+              岡山市南区のあたたかい音楽スペース
+            </span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold font-friendly text-neutral-800 leading-tight">
+              音を奏で、<br>
+              笑顔がつながる<br>
+              <span class="text-amber-500 underline decoration-amber-300 decoration-wavy underline-offset-8">私たちの「音の箱」</span>
+            </h2>
+            <p class="text-neutral-600 text-base md:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed">
+              「音の箱」は、子どもから大人まで、初心者からプロまで、誰もがほっと息を抜いて音楽を楽しめるアットホームなスタジオ＆スクールです。あなたの「弾きたい」「歌いたい」を、地域に寄り添いながら応援します。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+              <button onclick="switchPage('lesson')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-amber-500/30 hover:shadow-amber-500/40 flex items-center justify-center gap-2 group">
+                教室を見てみる
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+              <button onclick="switchPage('rental')" class="bg-white hover:bg-neutral-50 text-neutral-700 border border-amber-200 font-bold px-8 py-4 rounded-2xl transition-all flex items-center justify-center gap-2">
+                <i data-lucide="sliders" class="w-5 h-5 text-amber-500"></i>
+                スタジオを予約する
+              </button>
+            </div>
+          </div>
+
+          <!-- ビジュアル -->
+          <div class="md:col-span-5 relative flex justify-center">
+            <div class="relative w-80 h-80 sm:w-96 sm:h-96">
+              <!-- 手書き感のあるアットホームなフレーム -->
+              <div class="absolute inset-0 bg-gradient-to-tr from-amber-400 to-orange-300 rounded-[2.5rem] rotate-6 opacity-20 scale-105"></div>
+              <div class="absolute inset-0 bg-amber-100 rounded-[2.5rem] -rotate-3 border-4 border-dashed border-amber-300 flex flex-col justify-center items-center p-6 text-center shadow-lg">
+                <!-- ほっこりするイラスト風アイコン構成 -->
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-md mb-4">
+                  <i data-lucide="music" class="w-12 h-12 text-amber-500 animate-bounce"></i>
+                </div>
+                <h3 class="font-friendly text-xl font-bold text-neutral-800">音の箱へようこそ！</h3>
+                <p class="text-xs text-neutral-500 mt-2 max-w-[240px]">ギター、ピアノ、ドラムの音が響く。誰でも気軽に立ち寄れる、岡山のまちなか音楽空間です。</p>
+                <div class="mt-4 flex gap-1 text-amber-400">
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- サービス紹介サマリー -->
+      <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h3 class="text-xs font-bold text-amber-600 tracking-widest font-english uppercase">OUR SERVICES</h3>
+            <h2 class="text-2xl sm:text-3xl font-bold font-friendly text-neutral-800">音の箱でできること</h2>
+            <p class="text-neutral-500 text-sm">初心者の方から地域イベントのサポートまで、音楽に関するお手伝いを行っています。</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- サービス1: 音楽教室 -->
+            <div class="bg-amber-50/40 rounded-3xl p-8 border border-amber-100/50 hover:bg-amber-50 transition-colors flex flex-col justify-between group">
+              <div>
+                <div class="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-md shadow-amber-500/10">
+                  <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold font-friendly text-neutral-800 mb-3">音楽教室</h3>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6">
+                  ギター、ドラム、ボーカル、ピアノ、ベース、ウクレレなど。現役で活躍する優しい講師陣が、一人ひとりのペースに合わせて楽しくレッスンします。楽譜が読めなくても大丈夫！
+                </p>
+              </div>
+              <button onclick="switchPage('lesson')" class="text-amber-600 font-bold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                詳しく見る <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- サービス2: スタジオレンタル -->
+            <div class="bg-orange-50/40 rounded-3xl p-8 border border-orange-100/50 hover:bg-orange-50 transition-colors flex flex-col justify-between group">
+              <div>
+                <div class="w-12 h-12 bg-orange-400 text-white rounded-2xl flex items-center justify-center mb-6 shadow-md shadow-orange-400/10">
+                  <i data-lucide="sliders" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold font-friendly text-neutral-800 mb-3">スタジオレンタル</h3>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6">
+                  バンド練習や個人練習に最適な防音スタジオを完備。機材の使い方もスタッフが親切にレクチャーするので、初めてスタジオを使う方も安心してお越しください。
+                </p>
+              </div>
+              <button onclick="switchPage('rental')" class="text-orange-600 font-bold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                詳しく見る <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- サービス3: PA音響・イベントサポート -->
+            <div class="bg-emerald-50/40 rounded-3xl p-8 border border-emerald-100/50 hover:bg-emerald-50 transition-colors flex flex-col justify-between group">
+              <div>
+                <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-md shadow-emerald-500/10">
+                  <i data-lucide="volume-2" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold font-friendly text-neutral-800 mb-3">PA音響レンタル</h3>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6">
+                  お祭り、学園祭、発表会、各種お祝いなどの出張音響。小規模な集まりから本格的な野外イベントまで、経験豊富なオペレーターがクリアな音をお届けします。
+                </p>
+              </div>
+              <button onclick="switchPage('pa')" class="text-emerald-600 font-bold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                詳しく見る <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 暖かい特徴紹介 -->
+      <section class="py-16 bg-amber-50/20 border-t border-b border-amber-100/30">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <h2 class="text-2xl sm:text-3xl font-bold font-friendly text-neutral-800">
+                お茶を飲みに来るみたいに、<br>ふらっと立ち寄れる場所。
+              </h2>
+              <p class="text-neutral-600 leading-relaxed text-sm sm:text-base">
+                音の箱は、ただ楽器を弾くだけの無機質な空間ではありません。ロビーには談笑できるスペースがあり、レッスンの前後におしゃべりを楽しんだり、音楽仲間を見つけたり、地域のみなさまがのんびりと過ごせる憩いの場でもあります。
+              </p>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="p-1 bg-amber-100 text-amber-600 rounded-lg mt-1">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-neutral-800 text-sm">駐車場完備でアクセスも良好</h4>
+                    <p class="text-neutral-500 text-xs mt-0.5">お車でも安心してお越しいただける駐車スペースをご用意しています。</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="p-1 bg-amber-100 text-amber-600 rounded-lg mt-1">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-neutral-800 text-sm">初心者・シニアの方も大歓迎！</h4>
+                    <p class="text-neutral-500 text-xs mt-0.5">「昔やっていた楽器をもう一度」「子どもにピアノを」など、どんなスタートラインでも温かく迎えます。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- アットホームなお知らせ＆アピール枠 -->
+            <div class="bg-white rounded-3xl p-8 border border-amber-100 warm-shadow relative">
+              <div class="absolute -top-4 -right-4 bg-orange-400 text-white font-bold text-xs px-3 py-1.5 rounded-full rotate-6 shadow-md">
+                ＼見学も歓迎♪／
+              </div>
+              <h3 class="font-friendly text-lg font-bold text-neutral-800 mb-4 flex items-center gap-2">
+                <i data-lucide="smile" class="text-amber-500 w-5 h-5"></i>
+                おとのはこファミリーより
+              </h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-6">
+                「スタジオってちょっと入りにくいかも…」「初心者だから緊張する…」そう思う方も多いはず。音の箱は、スタッフみんなが気さくでおしゃべり好き！わからないことがあれば、いつでもなんでも聞いてくださいね。皆さんと音楽の話ができるのを楽しみに待っています！
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center font-bold text-amber-700">😊</div>
+                <div>
+                  <h4 class="font-bold text-neutral-800 text-sm">代表・スタッフ一同</h4>
+                  <p class="text-neutral-500 text-xs">岡山のみなさまに音楽の楽しさを届けて20年以上！</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- アクセス（HOME下部） -->
+      <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h2 class="text-2xl sm:text-3xl font-bold font-friendly text-neutral-800">アクセス＆スタジオ情報</h2>
+            <p class="text-neutral-500 text-sm">岡山市南区福吉町にあります。いつでもお気軽にお越しください。</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div class="lg:col-span-5 bg-amber-50/50 rounded-3xl p-8 border border-amber-100 flex flex-col justify-between">
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-neutral-800">住所</h4>
+                    <p class="text-neutral-600 text-sm mt-1">〒702-8012<br>岡山市南区福吉町31-27</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-neutral-800">お電話でのご予約・お問合せ</h4>
+                    <p class="text-lg font-bold text-amber-600 mt-1">086-263-7566</p>
+                    <p class="text-neutral-500 text-xs mt-0.5">※レッスン中など、出られない場合は折り返しいたします。</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-neutral-800">メールでのお問合せ</h4>
+                    <p class="text-neutral-600 text-sm mt-1">otonohako＠trad.ocn.ne.jp</p>
+                    <p class="text-neutral-500 text-xs mt-0.5">※全角の＠を半角@に変えてご送信ください。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-6 border-t border-amber-100 mt-6 flex justify-between items-center">
+                <div>
+                  <span class="text-xs text-neutral-400 block">営業時間</span>
+                  <span class="font-bold text-neutral-700 text-sm">10:00 〜 22:00（予約制）</span>
+                </div>
+                <div>
+                  <span class="text-xs text-neutral-400 block">定休日</span>
+                  <span class="font-bold text-neutral-700 text-sm">不定休</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 地図 (iFrame/プレースホルダー) -->
+            <div class="lg:col-span-7 rounded-3xl overflow-hidden min-h-[300px] border border-neutral-100 relative shadow-sm">
+              <!-- Googleマップ埋め込み（住所より生成） -->
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.880484501227!2d133.9312521!3d34.6324317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x355406085a6a68f7%3A0xc3c5b8e99903b7df!2s31-27%20Fukuyoshich%C5%8D%2C%20Minami%20Ward%2C%20Okayama%20702-8012!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" 
+                class="absolute inset-0 w-full h-full border-0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 🌟 【音楽教室】 ページ -->
+    <div id="page-lesson" class="page-content hidden">
+      <section class="bg-gradient-to-b from-amber-50/50 to-transparent py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h1 class="text-3xl md:text-4xl font-bold font-friendly text-neutral-800">音の箱 音楽教室</h1>
+            <p class="text-neutral-500 text-sm md:text-base leading-relaxed">
+              「やってみたい」と思ったその日がはじめどき。子どもからシニアの方まで、一人ひとりに合わせた完全個人レッスンです。
+            </p>
+          </div>
+
+          <!-- コース一覧 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- コース：アコースティックギター＆エレキギター -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-100/60 warm-shadow hover:-translate-y-1 transition-all">
+              <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full">ギター教室</span>
+              <h3 class="text-xl font-bold text-neutral-800 mt-3 mb-2 flex items-center gap-1">🎸 アコースティック＆エレキギター</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-4">
+                アコギでの弾き語りから、エレキギターでのかっこいいソロ演奏まで。コードの押さえ方など初歩から丁寧に指導します。
+              </p>
+              <div class="pt-4 border-t border-amber-50/60 flex justify-between items-center text-xs text-neutral-500">
+                <span>月謝制 / 月2回〜</span>
+                <span class="font-bold text-amber-600 text-sm">¥8,000〜/月</span>
+              </div>
+            </div>
+
+            <!-- コース：ドラム教室 -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-100/60 warm-shadow hover:-translate-y-1 transition-all">
+              <span class="text-xs bg-orange-100 text-orange-800 font-bold px-2.5 py-1 rounded-full">ドラム教室</span>
+              <h3 class="text-xl font-bold text-neutral-800 mt-3 mb-2 flex items-center gap-1">🥁 ドラム教室</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-4">
+                リズム感に自信がなくても大丈夫！本物のドラムを叩きながら、楽しく全身を動かします。ストレス解消や脳トレにも最適です。
+              </p>
+              <div class="pt-4 border-t border-amber-50/60 flex justify-between items-center text-xs text-neutral-500">
+                <span>月謝制 / 月2回〜</span>
+                <span class="font-bold text-orange-600 text-sm">¥8,500〜/月</span>
+              </div>
+            </div>
+
+            <!-- コース：ボーカル教室 -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-100/60 warm-shadow hover:-translate-y-1 transition-all">
+              <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">ボーカル教室</span>
+              <h3 class="text-xl font-bold text-neutral-800 mt-3 mb-2 flex items-center gap-1">🎤 ボーカル・ボイストレーニング</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-4">
+                呼吸法や発声方法を見直して、もっとのびのびと気持ち良く歌えるように。お気に入りのあの歌を、さらに上手に歌ってみませんか？
+              </p>
+              <div class="pt-4 border-t border-amber-50/60 flex justify-between items-center text-xs text-neutral-500">
+                <span>月謝制 / 月2回〜</span>
+                <span class="font-bold text-emerald-600 text-sm">¥8,000〜/月</span>
+              </div>
+            </div>
+
+            <!-- コース：ピアノ教室 -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-100/60 warm-shadow hover:-translate-y-1 transition-all">
+              <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded-full">ピアノ教室</span>
+              <h3 class="text-xl font-bold text-neutral-800 mt-3 mb-2 flex items-center gap-1">🎹 ピアノ・キーボード教室</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-4">
+                クラシックからポピュラー、アニメソングまで、あなたの弾きたい曲を自分のペースで。大人の初心者・再開者の方も多く通っています。
+              </p>
+              <div class="pt-4 border-t border-amber-50/60 flex justify-between items-center text-xs text-neutral-500">
+                <span>月謝制 / 月2回〜</span>
+                <span class="font-bold text-blue-600 text-sm">¥8,000〜/月</span>
+              </div>
+            </div>
+
+            <!-- コース：ベース教室 -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-100/60 warm-shadow hover:-translate-y-1 transition-all">
+              <span class="text-xs bg-purple-100 text-purple-800 font-bold px-2.5 py-1 rounded-full">ベース教室</span>
+              <h3 class="text-xl font-bold text-neutral-800 mt-3 mb-2 flex items-center gap-1">🎸 エレキベース教室</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-4">
+                バンドの縁の下の力持ち！重低音の魅力、ベースの基本テクニックをレッスン。リズムをキープする楽しさをぜひ体感してください。
+              </p>
+              <div class="pt-4 border-t border-amber-50/60 flex justify-between items-center text-xs text-neutral-500">
+                <span>月謝制 / 月2回〜</span>
+                <span class="font-bold text-purple-600 text-sm">¥8,000〜/月</span>
+              </div>
+            </div>
+
+            <!-- コース：ウクレレ教室 -->
+            <div class="bg-white rounded-3xl p-6 border border-amber-100/60 warm-shadow hover:-translate-y-1 transition-all">
+              <span class="text-xs bg-rose-100 text-rose-800 font-bold px-2.5 py-1 rounded-full">ウクレレ教室</span>
+              <h3 class="text-xl font-bold text-neutral-800 mt-3 mb-2 flex items-center gap-1">🌴 ウクレレ教室</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-4">
+                小さくて可愛らしい音が人気のウクレレ。ハワイアンだけでなくJ-POPなど様々なジャンルを気軽にポロポロと楽しめます。
+              </p>
+              <div class="pt-4 border-t border-amber-50/60 flex justify-between items-center text-xs text-neutral-500">
+                <span>月謝制 / 月2回〜</span>
+                <span class="font-bold text-rose-600 text-sm">¥7,000〜/月</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 特徴と流れ -->
+          <div class="mt-16 bg-amber-50/40 rounded-3xl p-8 border border-amber-100">
+            <h3 class="font-friendly text-xl font-bold text-neutral-800 mb-6 text-center">音の箱 音楽教室の3つのポイント</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-white p-5 rounded-2xl border border-amber-100/50">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-lg mb-3">1</div>
+                <h4 class="font-bold text-neutral-800 mb-2">手ぶらでもOK！</h4>
+                <p class="text-xs text-neutral-500 leading-relaxed">まだ楽器を持っていなくても、スタジオの機材を借りてレッスンが受けられるので、お仕事・学校帰りに気軽に通えます。</p>
+              </div>
+              <div class="bg-white p-5 rounded-2xl border border-amber-100/50">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-lg mb-3">2</div>
+                <h4 class="font-bold text-neutral-800 mb-2">完全個別対応</h4>
+                <p class="text-xs text-neutral-500 leading-relaxed">「マイペースに進めたい」「急ぎでこの曲だけ弾けるようになりたい」など、ご要望にフレキシブルにお応えします。</p>
+              </div>
+              <div class="bg-white p-5 rounded-2xl border border-amber-100/50">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-lg mb-3">3</div>
+                <h4 class="font-bold text-neutral-800 mb-2">年に1度の合同発表会！</h4>
+                <p class="text-xs text-neutral-500 leading-relaxed">練習の成果をみんなで披露する楽しいイベントも。生徒さん同士のコミュニティができるのもアットホームな当スタジオならではです。</p>
+              </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+              <button onclick="switchPage('contact')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-2xl transition-all shadow-md shadow-amber-500/20">
+                まずは無料体験レッスンからお気軽に！
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 🌟 【スタジオレンタル】 ページ -->
+    <div id="page-rental" class="page-content hidden">
+      <section class="bg-gradient-to-b from-amber-50/50 to-transparent py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h1 class="text-3xl md:text-4xl font-bold font-friendly text-neutral-800">スタジオレンタル</h1>
+            <p class="text-neutral-500 text-sm md:text-base">
+              個人練習からバンドリハーサルまで、広々とした快適な防音空間をご提供。
+            </p>
+          </div>
+
+          <!-- スタジオタイプ・設備 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- スタジオA -->
+            <div class="bg-white rounded-3xl p-8 border border-amber-100/60 warm-shadow space-y-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full">広いお部屋</span>
+                  <h3 class="text-2xl font-bold font-friendly text-neutral-800 mt-2">Aスタジオ</h3>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs text-neutral-400 block">バンド練習(1時間〜)</span>
+                  <span class="text-xl font-bold text-amber-600">¥2,000〜 / 1時間</span>
+                </div>
+              </div>
+              
+              <!-- 簡易図（インラインSVG風） -->
+              <div class="h-40 bg-amber-50/40 border border-dashed border-amber-200 rounded-2xl flex items-center justify-center text-neutral-400 gap-4">
+                <div class="text-center">
+                  <i data-lucide="drums" class="w-10 h-10 text-amber-500/60 mx-auto mb-1"></i>
+                  <span class="text-xs">ドラムセット完備</span>
+                </div>
+                <div class="text-center">
+                  <i data-lucide="speaker" class="w-10 h-10 text-amber-500/60 mx-auto mb-1"></i>
+                  <span class="text-xs">アンプ各種</span>
+                </div>
+                <div class="text-center">
+                  <i data-lucide="users" class="w-10 h-10 text-amber-500/60 mx-auto mb-1"></i>
+                  <span class="text-xs">5〜6名目安</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-neutral-800 mb-2">【常設機材リスト】</h4>
+                <ul class="grid grid-cols-2 gap-2 text-xs text-neutral-600">
+                  <li class="flex items-center gap-1.5">🟢 ドラムセット: Pearl</li>
+                  <li class="flex items-center gap-1.5">🟢 ギターアンプ: Marshall, Roland JC-120</li>
+                  <li class="flex items-center gap-1.5">🟢 ベースアンプ: Ampeg</li>
+                  <li class="flex items-center gap-1.5">🟢 PAシステム・マイク3本</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- スタジオB -->
+            <div class="bg-white rounded-3xl p-8 border border-amber-100/60 warm-shadow space-y-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-xs bg-orange-100 text-orange-800 font-bold px-2.5 py-1 rounded-full">個人・レッスン向け</span>
+                  <h3 class="text-2xl font-bold font-friendly text-neutral-800 mt-2">Bスタジオ</h3>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs text-neutral-400 block">個人練習(1人/時間)</span>
+                  <span class="text-xl font-bold text-orange-600">¥1,000〜 / 1時間</span>
+                </div>
+              </div>
+
+              <div class="h-40 bg-orange-50/40 border border-dashed border-orange-200 rounded-2xl flex items-center justify-center text-neutral-400 gap-4">
+                <div class="text-center">
+                  <i data-lucide="music-2" class="w-10 h-10 text-orange-500/60 mx-auto mb-1"></i>
+                  <span class="text-xs">アップライトピアノ</span>
+                </div>
+                <div class="text-center">
+                  <i data-lucide="guitar" class="w-10 h-10 text-orange-500/60 mx-auto mb-1"></i>
+                  <span class="text-xs">個人練習向き</span>
+                </div>
+                <div class="text-center">
+                  <i data-lucide="users" class="w-10 h-10 text-orange-500/60 mx-auto mb-1"></i>
+                  <span class="text-xs">1〜2名目安</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-neutral-800 mb-2">【常設機材リスト】</h4>
+                <ul class="grid grid-cols-2 gap-2 text-xs text-neutral-600">
+                  <li class="flex items-center gap-1.5">🟠 アップライトピアノ</li>
+                  <li class="flex items-center gap-1.5">🟠 ギターアンプ: Fender</li>
+                  <li class="flex items-center gap-1.5">🟠 CD/スマホ音源再生システム</li>
+                  <li class="flex items-center gap-1.5">🟠 大型鏡つき（演奏フォームチェック）</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- スタジオ料金計算シミュレータ -->
+          <div class="bg-amber-50/40 rounded-3xl p-8 border border-amber-100">
+            <h3 class="font-friendly text-xl font-bold text-neutral-800 mb-4 text-center">かんたん料金シミュレーター</h3>
+            <p class="text-xs text-neutral-500 text-center mb-6">スタジオ、利用時間、人数を選んで目安の料金を計算できます。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              <div>
+                <label class="block text-xs font-bold text-neutral-600 mb-2">1. スタジオの選択</label>
+                <select id="calc-studio" onchange="calculateRentalPrice()" class="w-full bg-white border border-amber-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                  <option value="A">Aスタジオ (バンド練習向き: ¥2,000/h)</option>
+                  <option value="B">Bスタジオ (ピアノ・個人練習向き: ¥1,000/h)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-neutral-600 mb-2">2. ご利用時間</label>
+                <select id="calc-hours" onchange="calculateRentalPrice()" class="w-full bg-white border border-amber-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                  <option value="1">1時間</option>
+                  <option value="2" selected>2時間</option>
+                  <option value="3">3時間</option>
+                  <option value="4">4時間</option>
+                  <option value="5">5時間</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-neutral-600 mb-2">3. ご利用人数</label>
+                <select id="calc-people" onchange="calculateRentalPrice()" class="w-full bg-white border border-amber-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                  <option value="band">3名以上（バンド利用料金）</option>
+                  <option value="solo1">1名のみ（個人練習割引料金）</option>
+                  <option value="solo2">2名のみ（個人練習割引料金）</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 計算結果 -->
+            <div class="mt-8 bg-white max-w-md mx-auto p-6 rounded-2xl border border-amber-100 text-center shadow-inner">
+              <span class="text-xs text-neutral-500">ご利用料金の目安</span>
+              <div class="text-3xl font-extrabold text-amber-600 mt-1">
+                <span class="text-sm">約</span> <span id="calc-result">4,000</span> <span class="text-sm">円 (税込)</span>
+              </div>
+              <p class="text-[10px] text-neutral-400 mt-2">※個人練習は前日および当日のご予約に適用されます。詳しくはお問い合わせください。</p>
+            </div>
+
+            <div class="mt-8 text-center">
+              <button onclick="switchPage('contact')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-2xl transition-all inline-flex items-center gap-2">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+                お電話またはWebでお気軽にご予約ください
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 🌟 【PA音響】 ページ -->
+    <div id="page-pa" class="page-content hidden">
+      <section class="bg-gradient-to-b from-emerald-50/30 to-transparent py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h1 class="text-3xl md:text-4xl font-bold font-friendly text-neutral-800">出張 PA音響・機材レンタル</h1>
+            <p class="text-neutral-500 text-sm md:text-base">
+              地域のイベントを素晴らしい音色で。学園祭、お祭り、講演会から本格コンサートまで幅広く音響をサポートします。
+            </p>
+          </div>
+
+          <!-- 音響プラン -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- ミニプラン -->
+            <div class="bg-white rounded-3xl p-6 border border-emerald-100 warm-shadow hover:scale-105 transition-transform flex flex-col justify-between">
+              <div>
+                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">小規模イベント・集会</span>
+                <h3 class="text-xl font-bold font-friendly text-neutral-800 mt-3 mb-2">🔊 ミニPAプラン</h3>
+                <p class="text-neutral-500 text-xs leading-relaxed mb-6">
+                  会議、セミナー、お祭り、発表会、小規模のアコースティックライブなどに最適。コンパクトで明瞭な音を届けます。
+                </p>
+                <ul class="space-y-2 text-xs text-neutral-600 mb-6">
+                  <li>🔹 マイク 2本</li>
+                  <li>🔹 スピーカー 1対 (スタンド付)</li>
+                  <li>🔹 簡易ミキサー</li>
+                  <li>🔹 往復運搬・接続アシスト付</li>
+                </ul>
+              </div>
+              <div>
+                <span class="text-xs text-neutral-400 block">料金目安</span>
+                <span class="text-2xl font-bold text-emerald-600">¥15,000〜 / 日</span>
+              </div>
+            </div>
+
+            <!-- スタンダードプラン -->
+            <div class="bg-white rounded-3xl p-6 border-2 border-emerald-400 warm-shadow hover:scale-105 transition-transform flex flex-col justify-between relative">
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-400 text-white font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">
+                一番人気
+              </div>
+              <div class="mt-3">
+                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">お祭り・ライブ・運動会</span>
+                <h3 class="text-xl font-bold font-friendly text-neutral-800 mt-3 mb-2">🎪 スタンダードプラン</h3>
+                <p class="text-neutral-500 text-xs leading-relaxed mb-6">
+                  数百人規模の野外お祭りや、バンド演奏、カラオケ大会などに。本格的な音量とクリアなサウンド。
+                </p>
+                <ul class="space-y-2 text-xs text-neutral-600 mb-6">
+                  <li>🔹 マイク最大 6本 (ワイヤレス対応)</li>
+                  <li>🔹 メインスピーカー 2基、モニター 2台</li>
+                  <li>🔹 デジタルミキサー</li>
+                  <li>🔹 専属PAオペレーター1名同行</li>
+                </ul>
+              </div>
+              <div>
+                <span class="text-xs text-neutral-400 block">料金目安</span>
+                <span class="text-2xl font-bold text-emerald-600">¥40,000〜 / 日</span>
+              </div>
+            </div>
+
+            <!-- フルサポートバンドプラン -->
+            <div class="bg-white rounded-3xl p-6 border border-emerald-100 warm-shadow hover:scale-105 transition-transform flex flex-col justify-between">
+              <div>
+                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">コンサート・学園祭</span>
+                <h3 class="text-xl font-bold font-friendly text-neutral-800 mt-3 mb-2">⚡️ フルバンドプラン</h3>
+                <p class="text-neutral-500 text-xs leading-relaxed mb-6">
+                  ドラムやアンプを含めたフルバンドのライブ音響。オペレーターが会場の反響に合わせたプロの調整を行います。
+                </p>
+                <ul class="space-y-2 text-xs text-neutral-600 mb-6">
+                  <li>🔹 ドラム用マイクなどを含む各種楽器収音</li>
+                  <li>🔹 高出力スピーカーセット & モニター複数</li>
+                  <li>🔹 楽器機材一式レンタル応相談</li>
+                  <li>🔹 専属PAオペレーター & アシスタント同行</li>
+                </ul>
+              </div>
+              <div>
+                <span class="text-xs text-neutral-400 block">料金目安</span>
+                <span class="text-2xl font-bold text-emerald-600">¥70,000〜 / 日</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PA実績・紹介 -->
+          <div class="mt-16 bg-white p-8 rounded-3xl border border-emerald-100/60 max-w-3xl mx-auto space-y-6">
+            <h3 class="font-friendly text-lg font-bold text-neutral-800 text-center">地域のイベントに寄り添い続けています</h3>
+            <p class="text-neutral-600 text-sm leading-relaxed text-center">
+              音の箱はこれまで、岡山市を中心に多くのお祭りや子供会の行事、ライブイベントなどで音響を務めてきました。「音響なんて全然わからない…」という役員の方もご安心ください。会場の広さや出演内容に合わせて、最適な機材をこちらで丁寧に見積もり・準備いたします。
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-emerald-700">
+              <span class="px-3 py-1.5 bg-emerald-50 rounded-full"># 地域の夏祭り</span>
+              <span class="px-3 py-1.5 bg-emerald-50 rounded-full"># 中学校・高校の学園祭</span>
+              <span class="px-3 py-1.5 bg-emerald-50 rounded-full"># アコースティック野外ライブ</span>
+              <span class="px-3 py-1.5 bg-emerald-50 rounded-full"># 企業の懇親会・イベント</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 🌟 【イベント】 ページ -->
+    <div id="page-event" class="page-content hidden">
+      <section class="bg-gradient-to-b from-amber-50/50 to-transparent py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h1 class="text-3xl md:text-4xl font-bold font-friendly text-neutral-800">音の箱 主催＆サポートイベント</h1>
+            <p class="text-neutral-500 text-sm md:text-base">
+              みんなが笑顔になる。音の箱では、楽しい音楽イベントを定期的に開催・支援しています。
+            </p>
+          </div>
+
+          <!-- イベント一覧 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 定期発表会 -->
+            <div class="bg-white rounded-3xl overflow-hidden border border-amber-100 warm-shadow flex flex-col md:flex-row">
+              <div class="md:w-2/5 bg-amber-100 p-6 flex flex-col justify-center items-center text-center">
+                <i data-lucide="party-popper" class="w-12 h-12 text-amber-500 mb-2"></i>
+                <span class="font-friendly font-bold text-lg text-amber-800">おとのはこファミリーライブ</span>
+                <span class="text-[10px] text-amber-600 block mt-1">毎年秋頃 開催予定</span>
+              </div>
+              <div class="md:w-3/5 p-6 flex flex-col justify-between">
+                <div>
+                  <h3 class="font-bold text-lg text-neutral-800 mb-2">年に一度の音楽教室合同発表会</h3>
+                  <p class="text-neutral-600 text-xs leading-relaxed">
+                    生徒の皆さんが主役！一人での演奏はもちろん、講師陣や他の生徒さんとの即席バンド演奏など、アットホームで笑顔の絶えない発表会です。出演したあとの達成感は格別！
+                  </p>
+                </div>
+                <div class="pt-4 border-t border-amber-50 mt-4 text-[10px] text-neutral-400">
+                  開催場所：岡山市内の市民ホール・ライブハウス
+                </div>
+              </div>
+            </div>
+
+            <!-- アコースティックナイト -->
+            <div class="bg-white rounded-3xl overflow-hidden border border-amber-100 warm-shadow flex flex-col md:flex-row">
+              <div class="md:w-2/5 bg-orange-100 p-6 flex flex-col justify-center items-center text-center">
+                <i data-lucide="sparkles" class="w-12 h-12 text-orange-500 mb-2"></i>
+                <span class="font-friendly font-bold text-lg text-orange-800">アコースティック<br>の箱</span>
+                <span class="text-[10px] text-orange-600 block mt-1">不定期・土曜日夜</span>
+              </div>
+              <div class="md:w-3/5 p-6 flex flex-col justify-between">
+                <div>
+                  <h3 class="font-bold text-lg text-neutral-800 mb-2">お気軽アコライブ＆セッション会</h3>
+                  <p class="text-neutral-600 text-xs leading-relaxed">
+                    初心者さんも歓迎のアコースティック限定イベント。ソロギター、弾き語り、オカリナ、ウクレレなど、なんでも大歓迎です。演奏のあとはお茶を飲みながら音楽談義で盛り上がります。
+                  </p>
+                </div>
+                <div class="pt-4 border-t border-amber-50 mt-4 text-[10px] text-neutral-400">
+                  開催場所：音の箱 ロビースペース
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 🌟 【ブログ】 ページ -->
+    <div id="page-blog" class="page-content hidden">
+      <section class="bg-gradient-to-b from-amber-50/50 to-transparent py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h1 class="text-3xl md:text-4xl font-bold font-friendly text-neutral-800">おとのはこブログ</h1>
+            <p class="text-neutral-500 text-sm md:text-base">
+              スタジオの日常、レッスンの様子、音楽機材の豆知識などをお届けします。
+            </p>
+          </div>
+
+          <!-- ブログ記事グリッド -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 記事1 -->
+            <article class="bg-white rounded-3xl overflow-hidden border border-amber-100 warm-shadow flex flex-col justify-between">
+              <div>
+                <div class="h-48 bg-amber-50 flex items-center justify-center text-neutral-400 relative">
+                  <span class="absolute top-3 left-3 bg-white text-amber-600 text-[10px] font-bold px-2 py-1 rounded-md">お知らせ</span>
+                  <i data-lucide="calendar" class="w-16 h-16 text-amber-200"></i>
+                </div>
+                <div class="p-6 space-y-2">
+                  <span class="text-xs text-neutral-400 font-english block">2026.06.01</span>
+                  <h3 class="font-bold text-base text-neutral-800 hover:text-amber-500 transition-colors">
+                    【教室レポート】ウクレレ体験レッスンに小学生の女の子が来てくれました！
+                  </h3>
+                  <p class="text-xs text-neutral-500 line-clamp-3">
+                    今日はお試しレッスンに可愛い小学生の生徒さんがお越しになりました。最初はちょっと緊張していたけれど、30分後には見事に一曲弾ききれました！キラキラした笑顔に癒やされました。
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 pt-4 border-t border-amber-50/50 flex justify-between items-center text-[10px] text-neutral-400">
+                <span>投稿者: スタジオスタッフ</span>
+                <span class="text-amber-600 font-bold hover:underline cursor-pointer">続きを読む</span>
+              </div>
+            </article>
+
+            <!-- 記事2 -->
+            <article class="bg-white rounded-3xl overflow-hidden border border-amber-100 warm-shadow flex flex-col justify-between">
+              <div>
+                <div class="h-48 bg-orange-50 flex items-center justify-center text-neutral-400 relative">
+                  <span class="absolute top-3 left-3 bg-white text-orange-600 text-[10px] font-bold px-2 py-1 rounded-md">日常</span>
+                  <i data-lucide="coffee" class="w-16 h-16 text-orange-200"></i>
+                </div>
+                <div class="p-6 space-y-2">
+                  <span class="text-xs text-neutral-400 font-english block">2026.05.20</span>
+                  <h3 class="font-bold text-base text-neutral-800 hover:text-amber-500 transition-colors">
+                    スタジオの待合スペース、お花を飾ってプチ模様替えしました♪
+                  </h3>
+                  <p class="text-xs text-neutral-500 line-clamp-3">
+                    皆様がレッスンの合間にホッと一息つけるよう、待合室を少し明るく模様替え。近所のお花屋さんで仕入れた季節のひまわりを飾っています。お気軽におしゃべりしに来てくださいね。
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 pt-4 border-t border-amber-50/50 flex justify-between items-center text-[10px] text-neutral-400">
+                <span>投稿者: 代表</span>
+                <span class="text-amber-600 font-bold hover:underline cursor-pointer">続きを読む</span>
+              </div>
+            </article>
+
+            <!-- 記事3 -->
+            <article class="bg-white rounded-3xl overflow-hidden border border-amber-100 warm-shadow flex flex-col justify-between">
+              <div>
+                <div class="h-48 bg-emerald-50 flex items-center justify-center text-neutral-400 relative">
+                  <span class="absolute top-3 left-3 bg-white text-emerald-600 text-[10px] font-bold px-2 py-1 rounded-md">お役立ち</span>
+                  <i data-lucide="mic" class="w-16 h-16 text-emerald-200"></i>
+                </div>
+                <div class="p-6 space-y-2">
+                  <span class="text-xs text-neutral-400 font-english block">2026.05.15</span>
+                  <h3 class="font-bold text-base text-neutral-800 hover:text-amber-500 transition-colors">
+                    【PA音響豆知識】野外イベントで「ハウリング」を防ぐマイクのコツ
+                  </h3>
+                  <p class="text-xs text-neutral-500 line-clamp-3">
+                    お祭りなどでマイクが「キーン」となってしまうハウリング。実は持ち方ひとつでかなり防げるんです！スピーカーとの位置関係や、マイクの握り方のちょっとしたコツをお教えします。
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 pt-4 border-t border-amber-50/50 flex justify-between items-center text-[10px] text-neutral-400">
+                <span>投稿者: 音響チーフ</span>
+                <span class="text-amber-600 font-bold hover:underline cursor-pointer">続きを読む</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- 🌟 【お問い合わせ】 ページ -->
+    <div id="page-contact" class="page-content hidden">
+      <section class="bg-gradient-to-b from-amber-50/50 to-transparent py-12">
+        <div class="max-w-4xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h1 class="text-3xl md:text-4xl font-bold font-friendly text-neutral-800">お問い合わせ・見学ご予約</h1>
+            <p class="text-neutral-500 text-sm md:text-base">
+              スタジオ・教室のことでわからない点があれば、どのようなことでもお気軽にご相談ください。
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+            <!-- 電話でのお問い合わせ -->
+            <div class="md:col-span-4 bg-amber-50 rounded-3xl p-6 border border-amber-100 flex flex-col justify-center items-center text-center space-y-4">
+              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center shadow-md">
+                <i data-lucide="phone" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-neutral-800 text-sm">お急ぎの方はお電話で！</h4>
+                <p class="text-[10px] text-neutral-400 mt-0.5">当日のスタジオ空き状況など</p>
+              </div>
+              <p class="text-2xl font-black text-amber-600">086-263-7566</p>
+              <p class="text-[10px] text-neutral-500">営業時間 10:00 〜 22:00 (予約制)</p>
+            </div>
+
+            <!-- メール問い合わせフォーム -->
+            <div class="md:col-span-8 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-100 warm-shadow">
+              <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-600 mb-1">お名前 <span class="text-red-500">*</span></label>
+                    <input type="text" required class="w-full border border-neutral-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="山田 太郎">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-600 mb-1">ふりがな</label>
+                    <input type="text" class="w-full border border-neutral-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="やまだ たろう">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-neutral-600 mb-1">メールアドレス <span class="text-red-500">*</span></label>
+                  <input type="email" required class="w-full border border-neutral-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="your@email.com">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-neutral-600 mb-1">お電話番号</label>
+                  <input type="tel" class="w-full border border-neutral-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="090-0000-0000">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-neutral-600 mb-1">お問合せ内容 <span class="text-red-500">*</span></label>
+                  <select class="w-full border border-neutral-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <option value="lesson">体験レッスンについて</option>
+                    <option value="rental">スタジオレンタルについて</option>
+                    <option value="pa">PA音響・機材レンタルについて</option>
+                    <option value="other">その他のお問い合わせ</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-neutral-600 mb-1">メッセージ内容 <span class="text-red-500">*</span></label>
+                  <textarea required rows="4" class="w-full border border-neutral-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="質問内容、体験レッスンご希望の楽器や日時などをご記入ください"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-2xl transition-colors shadow-md shadow-amber-500/10 flex items-center justify-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  送信する (デモ)
+                </button>
+              </form>
+
+              <!-- 完了メッセージ (初期は非表示) -->
+              <div id="thank-you-msg" class="hidden text-center py-8 space-y-3">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-md">
+                  <i data-lucide="check-circle" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-friendly text-xl font-bold text-neutral-800">お問い合わせありがとうございます！</h3>
+                <p class="text-xs text-neutral-500 max-w-sm mx-auto">
+                  フォームは正常に送信されました（※デモ動作です）。内容を確認次第、スタッフより折り返しお返事させていただきます。
+                </p>
+                <button onclick="resetContactForm()" class="text-xs text-amber-600 font-bold hover:underline">フォームに戻る</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ==================== フッター ==================== -->
+  <footer class="bg-neutral-800 text-neutral-300 pt-16 pb-8 border-t border-amber-900/10">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <!-- フッター情報 -->
+      <div class="space-y-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-amber-500 text-white rounded-lg flex items-center justify-center font-bold text-base">
+            <i data-lucide="music-4" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold font-friendly text-white">music studio 音の箱</span>
+        </div>
+        <p class="text-xs text-neutral-400 leading-relaxed">
+          岡山市南区のあたたかい音楽スペース。スタジオレンタル、初心者から始められる音楽教室、お祭りなどの出張PA音響まで、地元の音楽生活に寄り添います。
+        </p>
+        <div class="text-xs text-neutral-400 space-y-1">
+          <p>📍 岡山市南区福吉町31-27</p>
+          <p>📞 086-263-7566</p>
+          <p>✉️ otonohako＠trad.ocn.ne.jp</p>
+        </div>
+      </div>
+
+      <!-- クイックリンク -->
+      <div class="space-y-4">
+        <h3 class="font-bold text-white text-sm border-l-4 border-amber-500 pl-2">メニュー</h3>
+        <ul class="grid grid-cols-2 gap-2 text-xs">
+          <li><a href="#" onclick="switchPage('home')" class="hover:text-amber-400 transition-colors">▶ ホーム</a></li>
+          <li><a href="#" onclick="switchPage('lesson')" class="hover:text-amber-400 transition-colors">▶ 音楽教室</a></li>
+          <li><a href="#" onclick="switchPage('rental')" class="hover:text-amber-400 transition-colors">▶ スタジオレンタル</a></li>
+          <li><a href="#" onclick="switchPage('pa')" class="hover:text-amber-400 transition-colors">▶ PA音響</a></li>
+          <li><a href="#" onclick="switchPage('event')" class="hover:text-amber-400 transition-colors">▶ イベント</a></li>
+          <li><a href="#" onclick="switchPage('blog')" class="hover:text-amber-400 transition-colors">▶ ブログ</a></li>
+          <li><a href="#" onclick="switchPage('contact')" class="hover:text-amber-400 transition-colors">▶ お問い合わせ</a></li>
+        </ul>
+      </div>
+
+      <!-- コミュニティリンク -->
+      <div class="space-y-4">
+        <h3 class="font-bold text-white text-sm border-l-4 border-amber-500 pl-2">お知らせ＆リンク</h3>
+        <p class="text-xs text-neutral-400 leading-relaxed">
+          見学・楽器相談もお気軽にどうぞ！ギターやピアノ、ドラムのことなら、いつでもご案内いたします。
+        </p>
+        <div class="bg-neutral-700/50 p-4 rounded-xl border border-neutral-700">
+          <span class="text-[10px] text-amber-400 font-bold block uppercase tracking-wider mb-1">岡山を音楽でもっと元気に！</span>
+          <p class="text-[11px] text-neutral-300">「音の箱」は地域のイベントサポーターです。夏祭りやイベントでの音響依頼もお待ちしております。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- コピーライト -->
+    <div class="max-w-6xl mx-auto px-4 pt-8 border-t border-neutral-700 text-center text-xs text-neutral-500">
+      <p>&copy; music studio 音の箱. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== JavaScript ==================== -->
+  <script>
+    // Lucide アイコン初期化
+    lucide.createIcons();
+
+    // ページ遷移制御
+    function switchPage(pageId) {
+      // 1. 全てのページコンテンツを非表示にする
+      const pages = document.querySelectorAll('.page-content');
+      pages.forEach(page => {
+        page.classList.add('hidden');
+      });
+
+      // 2. 指定したページを表示する
+      const activePage = document.getElementById('page-' + pageId);
+      if (activePage) {
+        activePage.classList.remove('hidden');
+      }
+
+      // 3. ナビゲーションの「アクティブ」スタイルを更新 (デスクトップ)
+      const navButtons = document.querySelectorAll('.nav-btn');
+      navButtons.forEach(btn => {
+        const targetPage = btn.getAttribute('data-page');
+        if (targetPage === pageId) {
+          btn.classList.add('text-amber-600', 'bg-amber-50');
+          btn.classList.remove('text-neutral-600');
+        } else {
+          btn.classList.remove('text-amber-600', 'bg-amber-50');
+          btn.classList.add('text-neutral-600');
+        }
+      });
+
+      // 4. ナビゲーションの「アクティブ」スタイルを更新 (モバイル)
+      const mobButtons = document.querySelectorAll('[data-mob-page]');
+      mobButtons.forEach(btn => {
+        const targetPage = btn.getAttribute('data-mob-page');
+        if (targetPage === pageId) {
+          btn.classList.add('text-amber-600', 'bg-amber-50');
+          btn.classList.remove('text-neutral-700');
+        } else {
+          btn.classList.remove('text-amber-600', 'bg-amber-50');
+          btn.classList.add('text-neutral-700');
+        }
+      });
+
+      // 5. 画面トップにスクロール
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // モバイルメニュー開閉
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        menu.classList.add('hidden');
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons(); // アイコン再レンダリング
+    }
+
+    // スタジオシミュレーター計算
+    function calculateRentalPrice() {
+      const studio = document.getElementById('calc-studio').value;
+      const hours = parseInt(document.getElementById('calc-hours').value);
+      const people = document.getElementById('calc-people').value;
+      
+      let baseRate = 0;
+      
+      if (studio === 'A') {
+        // Aスタジオ（バンド：2000円、個人1人：1000円、個人2人：1500円）
+        if (people === 'band') {
+          baseRate = 2000;
+        } else if (people === 'solo1') {
+          baseRate = 1000;
+        } else if (people === 'solo2') {
+          baseRate = 1500;
+        }
+      } else {
+        // Bスタジオ（一律1000円、個人1人：800円、個人2人：1000円）
+        if (people === 'band') {
+          baseRate = 1200;
+        } else if (people === 'solo1') {
+          baseRate = 800;
+        } else if (people === 'solo2') {
+          baseRate = 1000;
+        }
+      }
+      
+      const totalPrice = baseRate * hours;
+      document.getElementById('calc-result').innerText = totalPrice.toLocaleString();
+    }
+
+    // お問い合わせフォーム送信デモ
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      document.getElementById('contact-form').classList.add('hidden');
+      document.getElementById('thank-you-msg').classList.remove('hidden');
+    }
+
+    function resetContactForm() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-form').classList.remove('hidden');
+      document.getElementById('thank-you-msg').classList.add('hidden');
+    }
+
+    // 初期読み込み時の計算
+    window.onload = function() {
+      calculateRentalPrice();
+    };
+  </script>
+</body>
+</html>
+
+```
